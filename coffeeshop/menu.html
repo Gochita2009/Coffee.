@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu - Nikolozi's Coffee Shop</title>
+<link rel="icon" type="image/png" href="transparent-coffee-bean.webp">
+<link rel="stylesheet" href="style.css">
+</head>
+<script>
+window.addEventListener('load', () => {
+    const hero = document.querySelector('.hero-content');
+    if(hero) hero.classList.add('visible');
+});
+</script>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <h2>
+        <img src="transparent-coffee-bean.webp" alt="Coffee Bean">
+        Nikolozi's Coffee Shop
+    </h2>
+    <button class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+    <img src="coffee shop.jpg" alt="Coffee Shop" class="hero-photo">
+    <div class="hero-content">
+        <h1>Our Menu</h1>
+        <p>Discover our selection of coffee & drinks</p>
+        <a href="#menu-section" class="btn">View Menu</a>
+    </div>
+</header>
+
+<!-- MENU SECTION -->
+<section class="menu-section">
+    <h2>Coffee & Drinks</h2>
+    <div class="menu-grid">
+        <div class="menu-item">
+            <img src="espresso.jpg" alt="Espresso">
+            <h3>Espresso</h3>
+            <p>$2.50</p>
+            <a href="contact.html" class="btn">Order Now</a>
+        </div>
+        <div class="menu-item">
+            <img src="cappuccino.jpg" alt="Cappuccino">
+            <h3>Cappuccino</h3>
+            <p>$3.50</p>
+            <a href="contact.html" class="btn">Order Now</a>
+        </div>
+        <div class="menu-item">
+            <img src="latte.jpg" alt="Latte">
+            <h3>Latte</h3>
+            <p>$3.75</p>
+            <a href="contact.html" class="btn">Order Now</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Nikolozi's Coffee Shop</p>
+    <p>📞 +30 697 3877392 | ✉️ nikolonikolon@gmail.com</p>
+</footer>
+
+<script>
+// Mobile menu toggle
+const menuToggle = document.getElementById('menuToggle');
+const navMenu = document.getElementById('navMenu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+});
+
+// Close menu when a link is clicked
+document.querySelectorAll('#navMenu a').forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        menuToggle.classList.remove('active');
+    });
+});
+
+// Make menu section visible on load
+window.addEventListener('load', () => {
+    const menuSection = document.querySelector('.menu-section');
+    if (menuSection) menuSection.classList.add('visible');
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (event) => {
+    if (!event.target.closest('.navbar')) {
+        navMenu.classList.remove('active');
+        menuToggle.classList.remove('active');
+    }
+});
+</script>
+
+</body>
+</html>

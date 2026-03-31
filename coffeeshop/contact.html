@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - Nikolozi's Coffee Shop</title>
+<link rel="icon" type="image/png" href="transparent-coffee-bean.webp">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <h2>
+        <img src="transparent-coffee-bean.webp" alt="Coffee Bean">
+        Nikolozi's Coffee Shop
+    </h2>
+    <button class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+    <img src="coffee shop.jpg" alt="Coffee Shop" class="hero-photo">
+    <div class="hero-content">
+        <h1>Contact Us</h1>
+        <p>We love hearing from our coffee lovers!</p>
+    </div>
+</header>
+
+<!-- CONTACT FORM SECTION -->
+<section class="content contact-section">
+    <h2>Send Us a Message</h2>
+    <form id="contactForm" class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+        <p id="formSuccess" style="display:none; color:green; margin-top:10px;">
+            Thank you! Your message has been sent.
+        </p>
+    </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Nikolozi's Coffee Shop</p>
+    <p>📞 +30 697 3877392 | ✉️ nikolonikolon@gmail.com</p>
+</footer>
+
+<script>
+// ===== NAVBAR =====
+const menuToggle = document.getElementById('menuToggle');
+const navMenu = document.getElementById('navMenu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+});
+
+document.querySelectorAll('#navMenu a').forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        menuToggle.classList.remove('active');
+    });
+});
+
+// ===== HERO ANIMATION =====
+window.addEventListener('load', () => {
+    const hero = document.querySelector('.hero-content');
+    if(hero) hero.classList.add('visible');
+});
+
+// ===== SECTIONS SCROLL ANIMATION =====
+const sections = document.querySelectorAll('section');
+window.addEventListener('scroll', () => {
+    sections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if(top < windowHeight - 100){
+            section.classList.add('visible');
+        }
+    });
+});
+
+// ===== CONTACT FORM AJAX (NO REDIRECT) =====
+const form = document.getElementById('contactForm');
+const successMsg = document.getElementById('formSuccess');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+
+    try {
+        const response = await fetch('https://formspree.io/f/xvzvrvrp', {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+            successMsg.style.display = 'block';
+            form.reset();
+        } else {
+            alert('Error sending message. Please try again.');
+        }
+    } catch (err) {
+        alert('Network error. Please try again.');
+        console.error(err);
+    }
+});
+</script>
+
+</body>
+</html>

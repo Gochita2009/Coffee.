@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nikolozi's Coffee Shop</title>
+<link rel="icon" type="image/png" href="transparent-coffee-bean.webp">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <h2>
+        <img src="transparent-coffee-bean.webp" alt="Coffee Bean">
+        Nikolozi's Coffee Shop
+    </h2>
+    <button class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+    <img src="coffee shop.jpg" alt="Nikolozi Coffee Shop" class="hero-photo">
+    <div class="hero-content">
+        <h1>Fresh Coffee, Every Morning</h1>
+        <p>Join us for a perfect start to your day</p>
+        <a href="menu.html" class="btn">Explore Our Menu</a>
+    </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="content">
+    <h2>About Us</h2>
+    <p>We serve high-quality coffee with passion and dedication to excellence.</p>
+    <a href="about.html" class="btn">Read More</a>
+</section>
+
+<!-- FEATURED IMAGES -->
+<section id="featured" class="content">
+    <h2>Our Coffee Moments</h2>
+    <div class="menu-grid">
+        <a href="menu.html" class="menu-item">
+            <img src="latte.jpg" alt="Coffee 1">
+            <h3>Latte Art</h3>
+            <p>Experience coffee that looks as good as it tastes.</p>
+        </a>
+        <a href="menu.html" class="menu-item">
+            <img src="espresso.jpg" alt="Coffee 2">
+            <h3>Espresso Shot</h3>
+            <p>Rich flavor in every single drop.</p>
+        </a>
+        <a href="menu.html" class="menu-item">
+            <img src="cozy-corner.jpg" alt="Coffee 3">
+            <h3>Cozy Corner</h3>
+            <p>Relax and enjoy your perfect coffee moment.</p>
+        </a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Nikolozi's Coffee Shop</p>
+    <p>📞 +30 697 3877392 | ✉️ nikolonikolon@gmail.com</p>
+</footer>
+
+<script>
+// Mobile menu toggle
+const menuToggle = document.getElementById('menuToggle');
+const navMenu = document.getElementById('navMenu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+});
+
+// Close menu when a link is clicked
+document.querySelectorAll('#navMenu a').forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        menuToggle.classList.remove('active');
+    });
+});
+
+// Hero animation on load
+window.addEventListener('load', () => {
+    const heroContent = document.querySelector('.hero-content');
+    if(heroContent){
+        heroContent.classList.add('visible');
+    }
+});
+
+// Scroll animation for sections
+const sections = document.querySelectorAll('section');
+window.addEventListener('scroll', () => {
+    sections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if(top < windowHeight - 100){
+            section.classList.add('visible');
+        }
+    });
+});
+</script>
+
+</body>
+</html>
